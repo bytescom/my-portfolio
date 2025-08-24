@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -67,7 +68,7 @@ export default function Portfolio() {
               onClick={() => scrollToSection("contact")}
               className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
-              Let's Work Together
+              Let&apos;s Work Together
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
             <Button
@@ -284,7 +285,7 @@ export default function Portfolio() {
                   borderWidth={1}
                 />
                 <div className="relative">
-                  <img
+                  <Image
                     src={`/abstract-geometric-shapes.png?height=200&width=400&query=${project.title}`}
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
@@ -323,9 +324,9 @@ export default function Portfolio() {
         <section id="contact" className="mb-20">
           <Card className="border-border bg-card rounded-2xl hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 revolving-border">
             <CardContent className="p-16 text-center">
-              <h2 className="text-3xl font-semibold mb-6 tracking-tight">Let's Create Something Amazing</h2>
+              <h2 className="text-3xl font-semibold mb-6 tracking-tight">Let&apos;s Create Something Amazing</h2>
               <p className="text-muted-foreground text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-                Ready to bring your ideas to life? I'm available for freelance projects and collaborations.
+                Ready to bring your ideas to life? I&apos;m available for freelance projects and collaborations.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

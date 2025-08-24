@@ -35,7 +35,7 @@ export default function Portfolio() {
           <div className="flex justify-between items-center">
             <div className="text-xl font-semibold text-foreground tracking-tight">Pankaj Kumar</div>
             <div className="hidden md:flex space-x-8">
-              {["Work", "Skills", "Projects", "Contact"].map((item) => (
+              {["Skills", "Projects", "Contact"].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -103,41 +103,6 @@ export default function Portfolio() {
             ))}
           </div>
         </header>
-
-        <section id="work" className="mb-32">
-          <h2 className="text-4xl font-semibold mb-16 text-center tracking-tight">Professional Journey</h2>
-          <div className="space-y-4">
-            {[
-              { company: "Tekion", role: "Full Stack Developer", period: "Jul 2023 - Present", current: true },
-              { company: "Sprung Labs", role: "Founder", period: "Jul 2023 - Present", current: true },
-              { company: "Buildspace", role: "Software Engineer", period: "Jan 2023 - Jul 2023" },
-              { company: "Student Outreach", role: "Software Developer", period: "Jul 2022 - Jan 2023" },
-              { company: "BUIS", role: "Full-stack Developer", period: "Nov 2021 - Jul 2022" },
-            ].map((job, index) => (
-              <Card
-                key={index}
-                className={`border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 rounded-2xl group ${
-                  job.current ? "revolving-border-slow" : "hover-revolving-border"
-                }`}
-              >
-                <CardContent className="p-8">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-1">{job.company}</h3>
-                      <p className="text-muted-foreground">{job.role}</p>
-                      {job.current && (
-                        <Badge className="mt-3 bg-accent/10 text-accent border-accent/20 rounded-full px-3 py-1">
-                          Current
-                        </Badge>
-                      )}
-                    </div>
-                    <span className="text-muted-foreground text-sm">{job.period}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
 
         <section id="skills" className="mb-32">
           <div className="text-center mb-20">

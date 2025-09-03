@@ -1,18 +1,35 @@
 import * as React from "react"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
+const cardVariants = cva(
+  "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm transition-all duration-200",
+  {
+    variants: {
+      variant: {
+        default: "border-border",
+        purple: "border-primary bg-gradient-to-br from-card to-primary/5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10",
+        "purple-outline": "border-primary/30 bg-transparent hover:border-primary/50 hover:bg-primary/5",
+        "purple-gradient": "border-primary/20 bg-gradient-to-br from-primary/10 to-primary/5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/20",
+        elevated: "border-border shadow-lg hover:shadow-xl transition-all duration-200",
+      },
+    },
+    defaultVariants: {
+      variant: "purple",
+    },
+  }
+)
+
 function Card({
   className,
+  variant,
   ...props
 }) {
   return (
     <div
       data-slot="card"
-      className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
-        className
-      )}
+      className={cn(cardVariants({ variant }), className)}
       {...props} />
   );
 }
@@ -39,7 +56,7 @@ function CardTitle({
   return (
     <div
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn("leading-none text-primary font-semibold", className)}
       {...props} />
   );
 }
@@ -92,6 +109,7 @@ function CardFooter({
 
 export {
   Card,
+  cardVariants,
   CardHeader,
   CardFooter,
   CardTitle,

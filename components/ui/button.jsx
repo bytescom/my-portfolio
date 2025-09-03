@@ -14,12 +14,20 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border border-primary/20 bg-background shadow-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 dark:bg-input/30 dark:border-primary/30 dark:hover:bg-primary/20",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        purple:
+          "bg-primary text-primary-foreground shadow-xs hover:bg-primary-dark transition-all duration-200 hover:shadow-lg hover:shadow-primary/25",
+        "purple-outline":
+          "border border-primary bg-transparent text-primary shadow-xs hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:shadow-lg hover:shadow-primary/25",
+        "purple-ghost":
+          "text-primary hover:bg-primary/10 hover:text-primary transition-all duration-200",
+        "purple-gradient":
+          "bg-gradient-to-r from-primary to-primary-dark text-primary-foreground shadow-xs hover:from-primary-dark hover:to-primary transition-all duration-200 hover:shadow-lg hover:shadow-primary/25",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -29,7 +37,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "purple",
       size: "default",
     },
   }

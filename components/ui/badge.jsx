@@ -17,10 +17,18 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
           "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+        purple:
+          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary-dark transition-all duration-200",
+        "purple-outline":
+          "border border-primary text-primary bg-transparent [a&]:hover:bg-primary [a&]:hover:text-primary-foreground transition-all duration-200",
+        "purple-light":
+          "border-transparent bg-primary/10 text-primary [a&]:hover:bg-primary/20 transition-all duration-200",
+        "purple-gradient":
+          "border-transparent bg-gradient-to-r from-primary to-primary-dark text-primary-foreground [a&]:hover:from-primary-dark [a&]:hover:to-primary transition-all duration-200",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "purple",
     },
   }
 )

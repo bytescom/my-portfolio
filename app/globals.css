@@ -4,24 +4,28 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to neutral palette with electric blue accent per new design specs */ /* Pure white */ /* Near black */
+  /* Updated to neutral palette with purple primary color #8f5bbd */ /* Pure white */ /* Near black */
   --card: oklch(1 0 0); /* Very light gray for cards */
   --card-foreground: oklch(0.145 0 0); /* Near black for card text */
   --popover: oklch(1 0 0); /* White */
   --popover-foreground: oklch(0.145 0 0); /* Near black for popover text */
-  --primary: oklch(0.205 0 0); /* Near black for primary elements */
+  --primary: oklch(0.65 0.20 300); /* Purple primary color #8f5bbd */
   --primary-foreground: oklch(0.985 0 0); /* White for primary text */
+  --primary-light: oklch(0.75 0.12 300); /* Lighter purple variant */
+  --primary-dark: oklch(0.55 0.18 300); /* Darker purple variant */
   --secondary: oklch(0.97 0 0); /* Light gray for secondary elements */
   --secondary-foreground: oklch(0.205 0 0); /* Near black for secondary text */
   --muted: oklch(0.97 0 0); /* Light gray for muted elements */
   --muted-foreground: oklch(0.556 0 0); /* Medium gray for muted text */
-  --accent: oklch(0.97 0 0); /* Electric blue accent */
-  --accent-foreground: oklch(0.205 0 0); /* White for accent text */
+  --accent: oklch(0.95 0.05 300); /* Light purple accent */
+  --accent-foreground: oklch(0.205 0 0); /* Dark text for accent */
+  --accent-light: oklch(0.98 0.02 300); /* Very light purple accent */
+  --accent-dark: oklch(0.85 0.08 300); /* Darker purple accent */
   --destructive: oklch(0.577 0.245 27.325); /* Red for destructive actions */
   --destructive-foreground: oklch(1 0 0); /* White for destructive text */
   --border: oklch(0.922 0 0); /* Light gray for borders */
   --input: oklch(0.922 0 0); /* White for input fields */
-  --ring: oklch(0.708 0 0); /* Electric blue ring */
+  --ring: oklch(0.65 0.15 300); /* Purple ring to match primary */
   --chart-1: oklch(0.646 0.222 41.116); /* Electric blue for charts */
   --chart-2: oklch(0.6 0.118 184.704); /* Light background for contrast */
   --chart-3: oklch(0.398 0.07 227.392); /* Orange for highlights */
@@ -30,35 +34,39 @@
   --radius: 0.625rem; /* Updated to rounded-2xl equivalent */
   --sidebar: oklch(0.985 0 0); /* Light gray for sidebar */
   --sidebar-foreground: oklch(0.145 0 0); /* Near black for sidebar text */
-  --sidebar-primary: oklch(0.205 0 0); /* Electric blue for primary sidebar elements */
+  --sidebar-primary: oklch(0.65 0.15 300); /* Purple for primary sidebar elements */
   --sidebar-primary-foreground: oklch(0.985 0 0); /* White for sidebar text */
   --sidebar-accent: oklch(0.97 0 0); /* Light gray for sidebar accents */
   --sidebar-accent-foreground: oklch(0.205 0 0); /* Near black for sidebar text */
   --sidebar-border: oklch(0.922 0 0); /* Light gray for sidebar borders */
-  --sidebar-ring: oklch(0.708 0 0); /* Electric blue ring for sidebar */ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0);
+  --sidebar-ring: oklch(0.65 0.15 300); /* Purple ring for sidebar */ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0);
 }
 
 .dark {
-  /* Updated dark mode to maintain neutral palette with electric blue accent */
+  /* Updated dark mode to maintain neutral palette with purple accent */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.75 0.15 300); /* Lighter purple for dark mode */
+  --primary-foreground: oklch(0.145 0 0); /* Dark text for light purple background */
+  --primary-light: oklch(0.8 0.12 300); /* Even lighter purple for dark mode */
+  --primary-dark: oklch(0.65 0.18 300); /* Darker purple for dark mode */
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.25 0.05 300); /* Dark purple accent for dark mode */
+  --accent-foreground: oklch(0.985 0 0); /* Light text for dark accent */
+  --accent-light: oklch(0.3 0.02 300); /* Very light purple accent for dark mode */
+  --accent-dark: oklch(0.2 0.08 300); /* Darker purple accent for dark mode */
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.75 0.15 300); /* Purple ring for dark mode */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -66,12 +74,12 @@
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.75 0.15 300); /* Light purple for dark mode sidebar */
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.75 0.15 300); /* Purple ring for dark mode sidebar */
 }
 
 @theme inline {
@@ -83,12 +91,16 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -255,6 +267,62 @@
   .hover-revolving-border:hover::before {
     opacity: 1;
   }
+
+  @keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out forwards;
+}
 }
 
 @layer base {

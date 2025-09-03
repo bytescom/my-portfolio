@@ -5,8 +5,6 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { GlowingEffect } from "@/components/ui/glowing-effect"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
   MapPin,
   Mail,
@@ -152,7 +150,7 @@ export default function Portfolio() {
                 </div>
 
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-                  Hello, I'm
+                  Hello, I&apos;m
                   <br />
                   <span className="text-primary relative">
                     Pankaj Kumar
@@ -173,7 +171,7 @@ export default function Portfolio() {
                   className="group relative px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/30 overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Let's Work Together
+                    Let&apos;s Work Together
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

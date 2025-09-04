@@ -3,7 +3,6 @@
 import React from "react"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   MapPin,
@@ -16,14 +15,11 @@ import {
   Code,
   Palette,
   Database,
-  ArrowRight,
-  Download,
   ChevronDown,
   Calendar,
   MessageCircle,
 } from "lucide-react"
 import Navbar from "./Navbar"
-import Help4 from "./help4"
 import Link from "next/link"
 
 export default function Portfolio() {

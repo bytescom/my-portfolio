@@ -28,7 +28,7 @@ export default function Navbar() {
       const scrollPosition = window.scrollY + 100;
       
       // Find the section that's currently in view
-      let currentSection = navItems[0].id; // Default to first section
+      let currentSection = navItems[0].id;
       
       for (let i = navItems.length - 1; i >= 0; i--) {
         const section = document.getElementById(navItems[i].id);

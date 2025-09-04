@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const cardVariants = cva(
-  "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm transition-all duration-200",
+  "bg-card text-card-foreground flex flex-col gap-0 rounded-xl border p-0 m-0 shadow-sm transition-all duration-200",
   {
     variants: {
       variant: {
@@ -42,7 +42,7 @@ function CardHeader({
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-0 p-0 m-0 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-0",
         className
       )}
       {...props} />
@@ -92,7 +92,7 @@ function CardContent({
   className,
   ...props
 }) {
-  return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />);
+  return (<div data-slot="card-content" className={cn("p-0 m-0", className)} {...props} />);
 }
 
 function CardFooter({
@@ -102,7 +102,7 @@ function CardFooter({
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn("flex items-center p-0 m-0 [.border-t]:pt-0", className)}
       {...props} />
   );
 }

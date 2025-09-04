@@ -19,8 +19,12 @@ import {
   ArrowRight,
   Download,
   ChevronDown,
+  Calendar,
+  MessageCircle,
 } from "lucide-react"
 import Navbar from "./Navbar"
+import Help4 from "./help4"
+import Link from "next/link"
 
 export default function Portfolio() {
   const [openIndex, setOpenIndex] = React.useState(null)
@@ -33,13 +37,6 @@ export default function Portfolio() {
   const toggleServicesAccordion = (index) => {
     setServicesOpenIndex(servicesOpenIndex === index ? null : index)
   }
-
-  const skills = [
-    { category: "Languages", skills: ["JavaScript", "TypeScript", "Python", "HTML", "CSS"] },
-    { category: "Frameworks", skills: ["React", "Next.js", "Node.js", "Express", "TailwindCSS"] },
-    { category: "Databases", skills: ["MongoDB", "PostgreSQL", "Supabase", "Redis", "Prisma"] },
-    { category: "Tools", skills: ["Git", "Docker", "Figma", "VS Code", "GitHub"] },
-  ]
 
   const projects = [
     {
@@ -98,6 +95,24 @@ export default function Portfolio() {
     },
   ]
 
+  // Clean color mapping for skill categories
+  const getCategoryColors = (category) => {
+    const colors = {
+      Languages: "from-blue-500 to-cyan-500",
+      Frameworks: "from-purple-500 to-pink-500",
+      Databases: "from-green-500 to-emerald-500",
+      Tools: "from-orange-500 to-red-500"
+    }
+    return colors[category] || colors.Languages
+  }
+
+  const skills = [
+    { category: "Languages", skills: ["JavaScript", "TypeScript", "Python", "HTML", "CSS"] },
+    { category: "Frameworks", skills: ["React", "Next.js", "Node.js", "Express", "TailwindCSS"] },
+    { category: "Databases", skills: ["MongoDB", "PostgreSQL", "Supabase", "Redis", "Prisma"] },
+    { category: "Tools", skills: ["Git", "Docker", "Figma", "VS Code", "GitHub"] },
+  ]
+
   const services = [
     {
       icon: Monitor,
@@ -125,7 +140,49 @@ export default function Portfolio() {
     },
   ]
 
-  const socials = [Github, Linkedin, Twitter]
+  const socials = [
+    { name: "GitHub", icon: Github, url: "https://github.com/bytescom" },
+    { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/pankajk074" },
+    { name: "Twitter", icon: Twitter, url: "https://twitter.com/iampankajkumr" }
+  ]
+
+  // Define gradient colors for each social platform
+  const getGradientClasses = (socialName) => {
+    switch (socialName) {
+      case 'GitHub':
+        return {
+          mobile: 'bg-gradient-to-r from-gray-800 to-gray-900',
+          desktop: 'md:bg-gradient-to-r md:from-gray-800/10 md:to-gray-900/10',
+          hover: 'md:hover:bg-gradient-to-r md:hover:from-gray-800 md:hover:to-gray-900',
+          text: 'md:text-gray-800',
+          border: 'border-gray-800 md:hover:border-gray-800/20'
+        }
+      case 'LinkedIn':
+        return {
+          mobile: 'bg-gradient-to-r from-blue-600 to-blue-700',
+          desktop: 'md:bg-gradient-to-r md:from-blue-600/10 md:to-blue-700/10',
+          hover: 'md:hover:bg-gradient-to-r md:hover:from-blue-600 md:hover:to-blue-700',
+          text: 'md:text-blue-600',
+          border: 'border-blue-600 md:hover:border-blue-600/20'
+        }
+      case 'Twitter':
+        return {
+          mobile: 'bg-gradient-to-r from-sky-500 to-sky-600',
+          desktop: 'md:bg-gradient-to-r md:from-sky-500/10 md:to-sky-600/10',
+          hover: 'md:hover:bg-gradient-to-r md:hover:from-sky-500 md:hover:to-sky-600',
+          text: 'md:text-sky-500',
+          border: 'border-sky-500 md:hover:border-sky-500/20'
+        }
+      default:
+        return {
+          mobile: 'bg-gradient-to-r from-primary to-primary-dark',
+          desktop: 'md:bg-gradient-to-r md:from-primary/10 md:to-primary-dark/10',
+          hover: 'md:hover:bg-gradient-to-r md:hover:from-primary md:hover:to-primary-dark',
+          text: 'md:text-primary',
+          border: 'border-primary md:hover:border-primary/20'
+        }
+    }
+  }
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -137,85 +194,141 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-
       <div className="max-w-6xl mx-auto px-6 py-12 pt-24">
         <header id="home" className="mb-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="flex justify-start items-center gap-10">
             {/* Left Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                  Available for work
-                </div>
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 md:bg-green-500/10 text-green-600  md:px-4 md:py-1 rounded-full text-sm font-medium mb-1 md:mb-3 animate-pulse">
+                <div className="w-2 h-2 bg-green-600 rounded-full animate-ping"></div>
+                Available for work
+              </div>
 
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-                  Hello, I&apos;m
-                  <br />
-                  <span className="text-primary relative">
-                    Pankaj Kumar
-                    <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-60"></div>
-                  </span>
-                </h1>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
+                <span className="block text-foreground">Hello, I&apos;m</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500 relative inline-block">
+                  Pankaj Kumar
+                  <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-80"></div>
+                </span>
+              </h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-                  Full Stack Developer passionate about building exceptional web applications with modern technologies and thoughtful design.
+              <div className="space-y-2 mt-2">
+                <p className="text-2xl md:text-3xl font-bold text-muted-foreground">
+                  Full Stack Developer · Freelancer
                 </p>
               </div>
 
-              {/* Enhanced Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  variant="purple-gradient"
-                  onClick={() => scrollToSection("contact")}
-                  className="group relative px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/30 overflow-hidden"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Let&apos;s Work Together
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              {/* Key Highlights */}
+              <div className="space-y-3">
+                {/* Line 1 */}
+                <div className="flex items-center gap-3 text-lg">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  <span className="text-muted-foreground">
+                    Building exceptional digital experiences with{" "}
+                    <span className="text-primary font-semibold">modern technologies</span>,{" "}
+                    <span className="text-pink-400 font-semibold">web apps</span> &{" "}
+                    <span className="text-blue-400 font-semibold">automation</span>.
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Button>
+                </div>
 
-                <Button
-                  variant="purple-outline"
-                  className="group relative px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20 border-2 hover:border-primary/50"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Download className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-                    Download CV
+                {/* Line 2 */}
+                <div className="flex items-center gap-3 text-lg">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                  <span className="text-muted-foreground">
+                    Founder of{" "}
+                    <span className="text-yellow-400 font-semibold">@KaamLagao</span> — freelance marketplace, and built{" "}
+                    <span className="text-primary font-semibold">internal systems</span> &
+                    <span className="text-primary font-semibold"> media pipelines</span> with AWS.
                   </span>
-                </Button>
+                </div>
               </div>
 
               {/* Contact Info */}
-              <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2 hover:text-primary transition-colors duration-300">
-                  <MapPin className="w-4 h-4" />
-                  Delhi, India
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base lg:text-lg text-black">
+                <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary md:border-transparent md:hover:border-primary transition-all duration-300 cursor-pointer">
+                  <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                  <span>Delhi, India</span>
                 </div>
-                <div className="flex items-center gap-2 hover:text-primary transition-colors duration-300">
-                  <Mail className="w-4 h-4" />
-                  hello@pankajk.site
+
+                <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary md:border-transparent md:hover:border-primary transition-all duration-300 cursor-pointer">
+                  <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                  <span>hello@pankajk.site</span>
                 </div>
               </div>
 
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 pt-6 md:pt-8">
+                <a
+                  href="https://calendly.com/pankajk074/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-4 xl:px-16 rounded-2xl sm:rounded-3xl font-semibold sm:font-bold text-sm sm:text-base lg:text-lg xl:text-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/40 overflow-hidden bg-gradient-to-r from-primary via-purple-500 to-primary-dark text-primary-foreground border-2 border-transparent hover:border-primary/30"
+                >
+                  {/* Animated background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark rounded-2xl sm:rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  {/* Content */}
+                  <span className="relative z-10 flex items-center gap-2 sm:gap-3 lg:gap-4">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-white/40 group-hover:rotate-12 transition-all duration-300">
+                      <Calendar className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <span className="group-hover:scale-105 transition-transform duration-300">Book a Call</span>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 bg-white/60 rounded-full animate-pulse group-hover:animate-bounce"></div>
+                  </span>
+                </a>
+
+                <a
+                  href="https://twitter.com/messages/compose?recipient_id=YOUR_TWITTER_ID&text=Hi%20Pankaj,%20I%27d%20like%20to%20discuss%20a%20project%20with%20you."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-4 xl:px-16 rounded-2xl sm:rounded-3xl font-semibold sm:font-bold text-sm sm:text-base lg:text-lg xl:text-xl transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/30 border-2 border-sky-500/30 hover:border-sky-500/80 bg-gradient-to-r from-sky-500/10 via-blue-500/10 to-sky-600/10 backdrop-blur-sm hover:bg-gradient-to-r hover:from-sky-500 hover:via-blue-500 hover:to-sky-600 overflow-hidden text-sky-600 hover:text-white"
+                >
+                  {/* Animated background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-sky-500/20 via-blue-500/20 to-sky-600/20 rounded-2xl sm:rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sky-500/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  {/* Content */}
+                  <span className="relative z-10 flex items-center gap-2 sm:gap-3 lg:gap-4">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-sky-500/10 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white group-hover:rotate-12 transition-all duration-300">
+                      <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-sky-500 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                    </div>
+                    <span className="group-hover:scale-105 transition-transform duration-300">Drop a DM</span>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 bg-sky-500/60 rounded-full animate-pulse group-hover:animate-bounce"></div>
+                  </span>
+                </a>
+              </div>
+
+
               {/* Social Links */}
-              <div className="flex gap-4 lg:hidden">
-                {socials.map((Icon, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="group text-muted-foreground hover:text-primary p-3 rounded-xl hover:bg-primary/10 transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                  >
-                    <Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  </a>
-                ))}
+              <div className="flex flex-wrap gap-4 pt-12">
+                {socials.map((social, index) => {
+                  const gradientClasses = getGradientClasses(social.name)
+                  return (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group flex flex-col md:flex-row items-center gap-3 p-3 md:px-6 md:py-2 text-white ${gradientClasses.mobile} border ${gradientClasses.border} ${gradientClasses.text} md:hover:text-white ${gradientClasses.desktop} rounded-xl ${gradientClasses.hover} transition-all duration-300 hover:scale-105 md:backdrop-blur-sm md:shadow-lg`}
+                      title={social.name}
+                    >
+                      <social.icon className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+                      <span className="hidden md:block text font-medium group-hover:text-white transition-colors duration-300">
+                        {social.name}
+                      </span>
+                    </a>
+                  )
+                })}
               </div>
             </div>
 
             {/* Right Content - Visual Element */}
-            <div className="relative hidden lg:block">
+            {/* <div className="relative hidden lg:block">
               <div className="flex flex-col justify-center items-center gap-4">
                 <div className="flex gap-4">
                   {socials.map((Icon, index) => (
@@ -229,7 +342,7 @@ export default function Portfolio() {
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </header>
 
@@ -237,168 +350,159 @@ export default function Portfolio() {
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              Portfolio
+              Projects
             </div>
             <h2 className="text-4xl font-semibold mb-6 tracking-tight">
-              Featured
-              <span className="text-primary relative">
-                Projects
+              Not just
+              <span className="text-primary relative inline-block">
+                <Link href="/projects" className="flex items-center">
+                  projects
+                  <ExternalLink className="w-6 h-6 ml-1" />
+                </Link>
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-60"></div>
               </span>
+              , but experiments in impact
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              A selection of projects that showcase my skills and passion for development
+              Showcasing ideas transformed into experiences that inspire curiosity.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="group relative overflow-hidden border-primary border-primary/20 bg-gradient-to-br from-background to-primary/5 hover:from-primary/5 hover:to-primary/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 rounded-3xl"
+                className="group relative overflow-hidden border border-primary/10 bg-gradient-to-br from-background to-background/50 hover:border-primary/20 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 rounded-2xl cursor-pointer"
+                onClick={() => window.open(project.demoUrl, '_blank', 'noopener,noreferrer')}
               >
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full"
-                >
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-5">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary rounded-full blur-2xl"></div>
-                  </div>
-
-                  <div className="relative">
+                  <div className="relative overflow-hidden">
                     <Image
                       src={project.img}
                       alt={project.title}
                       width={400}
                       height={200}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-
-                    {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                     <div className="absolute top-4 left-4">
-                      <Badge className="rounded-full px-4 py-2 bg-primary/90 backdrop-blur-sm text-primary-foreground font-medium">
+                      <Badge className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm text-white font-medium px-3 py-1 rounded-full">
                         {project.type}
                       </Badge>
                     </div>
 
-                    <div className="absolute top-4 right-4 flex gap-2">
+                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <a
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="bg-white/20 backdrop-blur-sm p-3 rounded-xl transition-all duration-300 hover:bg-white/30 hover:scale-110 opacity-0 group-hover:opacity-100"
-                        title="View Source Code"
+                        className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm p-2.5 rounded-lg hover:from-primary hover:to-primary-dark hover:scale-110 transition-all duration-300"
+                        title="Source Code"
                       >
-                        <Github className="w-5 h-5 text-white" />
+                        <Github className="w-4 h-4 text-white" />
                       </a>
-                      <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl transition-all duration-300 hover:bg-white/30 hover:scale-110 opacity-0 group-hover:opacity-100">
-                        <ExternalLink className="w-5 h-5 text-white" />
-                      </div>
-                    </div>
-
-                    {/* Project Title Overlay */}
-                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <h3 className="text-white font-semibold text-lg mb-2">{project.title}</h3>
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm p-2.5 rounded-lg hover:from-primary hover:to-primary-dark hover:scale-110 transition-all duration-300"
+                        title="Live Demo"
+                      >
+                        <ExternalLink className="w-4 h-4 text-white" />
+                      </a>
                     </div>
                   </div>
 
-                  <CardContent className="relative p-8">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-gradient-to-r from-primary to-primary-dark rounded-lg flex items-center justify-center">
-                        <div className="w-4 h-4 bg-primary-foreground rounded opacity-80"></div>
-                      </div>
-                      <h3 className="text-xl font-semibold text-primary group-hover:text-primary-dark transition-colors duration-300">
+                  <CardContent className="p-4">
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
                         {project.title}
                       </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
-
-                    <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
 
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tagIndex) => (
                         <Badge
                           key={tagIndex}
                           variant="secondary"
-                          className="text-xs rounded-full px-3 py-1 bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300"
+                          className="text-xs px-3 py-1 bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300 rounded-full"
                         >
                           {tag}
                         </Badge>
                       ))}
                     </div>
-
-                    {/* Decorative Element */}
-                    <div className="absolute top-4 right-4 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                      <div className="w-2 h-2 bg-primary/40 rounded-full animate-pulse"></div>
-                    </div>
                   </CardContent>
-                </a>
               </Card>
             ))}
           </div>
         </section>
 
-        <section id="skills" className="mb-32">
+        <section id="skills" className="mb-20 sm:mb-24 lg:mb-32">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              Skills & Expertise
+              Skills
             </div>
             <h2 className="text-4xl font-semibold mb-6 tracking-tight">
-              Technical
-              <span className="text-primary relative">
-                Mastery
+              Not just
+              <span className="text-primary relative inline-block">
+                <Link href="/skills" className="flex items-center">
+                  skills
+                  <ExternalLink className="w-6 h-6 ml-1" />
+                </Link>
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-60"></div>
               </span>
+              , but superpowers in motion
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Technologies and tools I use to bring ideas to life
+              A toolkit of creativity and logic that turns challenges into opportunities.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skills.map((group, index) => (
               <Card
                 key={index}
-                className="group relative overflow-hidden border-primary border-primary/20 bg-gradient-to-br from-background to-primary/5 hover:from-primary/5 hover:to-primary/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 rounded-3xl"
+                className="group relative overflow-hidden border border-primary bg-gradient-to-br from-background to-background/50 hover:border-primary/20 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 rounded-2xl"
               >
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-primary rounded-full blur-2xl"></div>
-                  <div className="absolute bottom-0 left-0 w-16 h-16 bg-primary rounded-full blur-xl"></div>
-                </div>
+                {/* Background accent */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColors(group.category)} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
 
-                <CardContent className="relative p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-gradient-to-r from-primary to-primary-dark rounded-xl flex items-center justify-center">
-                      <div className="w-6 h-6 bg-primary-foreground rounded-lg opacity-80"></div>
+                <CardContent className="relative p-6">
+                  {/* Header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${getCategoryColors(group.category)} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                      <div className="w-6 h-6 bg-white/90 rounded-lg"></div>
                     </div>
-                    <h3 className="text-xl font-semibold text-primary">{group.category}</h3>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {group.category}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {group.skills.length} technologies
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="space-y-4">
+                  {/* Skills list */}
+                  <div className="space-y-3">
                     {group.skills.map((skill, skillIndex) => (
                       <div
                         key={skillIndex}
-                        className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-300 group/skill"
+                        className="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/5 transition-all duration-300"
                       >
-                        <div className="w-2 h-2 bg-primary/60 rounded-full group-hover/skill:bg-primary transition-colors duration-300"></div>
-                        <span className="text-sm font-medium">{skill}</span>
+                        <div className={`w-2 h-2 bg-gradient-to-r ${getCategoryColors(group.category)} rounded-full`}></div>
+                        <span className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300">
+                          {skill}
+                        </span>
                       </div>
                     ))}
-                  </div>
-
-                  {/* Decorative Element */}
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-primary/40 rounded-full animate-pulse"></div>
                   </div>
                 </CardContent>
               </Card>
@@ -414,8 +518,11 @@ export default function Portfolio() {
             </div>
             <h2 className="text-4xl font-semibold mb-6 tracking-tight">
               How I can help bring your
-              <span className="text-primary relative">
-                digital vision
+              <span className="text-primary relative inline-block">
+                <Link href="/skills" className="flex items-center">
+                  digital vision
+                  <ExternalLink className="w-6 h-6 ml-1" />
+                </Link>
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-60"></div>
               </span>
               {" "}to life
@@ -552,7 +659,7 @@ export default function Portfolio() {
         <section id="contact" className="mb-20">
           <div className="max-w-6xl mx-auto">
             <div className="relative group">
-              <Card className="border-primary border-primary/20 bg-gradient-to-br from-background to-primary/5 hover:from-primary/5 hover:to-primary/10 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-700 hover:scale-[1.02]">
+              <Card className="border-primary border-primary bg-gradient-to-br from-background to-primary/5 hover:from-primary/5 hover:to-primary/10 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-700 hover:scale-[1.02]">
 
                 <CardContent className="relative p-6 sm:p-12 lg:p-16 text-center">
                   <div className="max-w-3xl mx-auto">
@@ -614,13 +721,16 @@ export default function Portfolio() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-muted-foreground">© 2024 Pankaj Kumar. All rights reserved.</p>
             <div className="flex gap-4">
-              {socials.map((Icon, index) => (
+              {socials.map((social, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group/social flex flex-col items-center gap-3 p-3 text-primary hover:text-white bg-primary/10 rounded-xl hover:border-primary hover:bg-primary transition-all duration-300 hover:scale-105"
+                  title={social.name}
                 >
-                  <Icon className="w-5 h-5" />
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>

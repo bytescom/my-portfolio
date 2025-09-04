@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("projects");
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { name: "Projects", id: "projects" },
     { name: "Skills", id: "skills" },
     { name: "Services", id: "services" },
     { name: "Contact", id: "contact" }
-  ];
+  ], []);
 
   const navMenuItems = [
     { name: "Home", id: "home" },
@@ -46,7 +46,7 @@ export default function Navbar() {
     
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -60,66 +60,76 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg border-b border-border/40">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-primary cursor-pointer">
-          Pankaj <span className="text-foreground">Kumar</span>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg border-b border-border/40">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold text-primary cursor-pointer">
+            Pankaj <span className="text-foreground">Kumar</span>
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex space-x-8">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`relative font-medium transition-colors duration-300 ${
+                  activeSection === item.id
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
+                }`}
+              >
+                {item.name}
+                {/* Underline animation */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-0.5 w-full bg-primary transition-transform duration-300 origin-left ${
+                    activeSection === item.id
+                      ? "scale-x-100"
+                      : "scale-x-0"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors duration-300 z-50"
+          >
+            {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          </button>
         </div>
+      </nav>
 
-        {/* Desktop Nav */}
-         <div className="hidden md:flex space-x-8">
-           {navItems.map((item) => (
-             <button
-               key={item.id}
-               onClick={() => scrollToSection(item.id)}
-               className={`relative font-medium transition-colors duration-300 ${
-                 activeSection === item.id
-                   ? "text-primary"
-                   : "text-muted-foreground hover:text-primary"
-               }`}
-             >
-               {item.name}
-               {/* Underline animation */}
-               <span
-                 className={`absolute left-0 -bottom-1 h-0.5 w-full bg-primary transition-transform duration-300 origin-left ${
-                   activeSection === item.id
-                     ? "scale-x-100"
-                     : "scale-x-0"
-                 }`}
-               />
-             </button>
-           ))}
-         </div>
-
-       {/* Mobile Menu Button */}
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden fixed top-0 left-0 w-full h-screen bg-background/95 backdrop-blur-lg flex flex-col items-center justify-center space-y-10 transition-transform duration-500 z-40 ${
+          isMenuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        {/* Close button in mobile menu */}
         <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute top-6 right-6 p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
         >
-          {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          <X className="w-7 h-7" />
         </button>
-    </div>
 
-    {/* Mobile Menu */}
-       <div
-         className={`md:hidden fixed top-0 left-0 w-full h-screen bg-background/95 backdrop-blur-lg flex flex-col items-center justify-center space-y-10 transition-transform duration-500 ${
-           isMenuOpen ? "translate-y-0" : "-translate-y-full"
-         }`}
-       >
-         {navMenuItems.map((item) => (
-           <button
-             key={item.id}
-             onClick={() => scrollToSection(item.id)}
-             className={`text-3xl font-semibold transition-colors duration-300 ${
-               activeSection === item.id
-                 ? "text-primary"
-                 : "text-foreground hover:text-primary"
-             }`}
-           >
-             {item.name}
-           </button>
-         ))}
-       </div>
-    </nav>
+        {navMenuItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
+            className={`text-3xl font-semibold transition-colors duration-300 ${
+              activeSection === item.id
+                ? "text-primary"
+                : "text-foreground hover:text-primary"
+            }`}
+          >
+            {item.name}
+          </button>
+        ))}
+      </div>
+    </>
   );
 }

@@ -112,31 +112,29 @@ export default function Portfolio() {
 
                 <div className="space-y-2 pt-6">
                   <p className="text-xl sm:text-2xl md:text-3xl font-bold text-muted-foreground lg:pt-2">
-                    Full Stack Developer · Freelancer
+                    Developer · Freelancer
                   </p>
                 </div>
 
-                {/* Key Highlights */}
                 <div className="flex flex-col justify-start gap-4 pt-1 pb-4">
-                  {/* Line 1 */}
                   <div className="flex items-center gap-3 text-base sm:text-lg">
                     <div className="hidden sm:block w-1.5 h-1.5 bg-primary rounded-full"></div>
                     <span className="text-muted-foreground">
-                      Building exceptional digital experiences with{" "}
-                      <span className="text-primary font-semibold">modern technologies</span>,{" "}
-                      <span className="text-pink-400 font-semibold">web apps</span> &{" "}
-                      <span className="text-blue-400 font-semibold">automation</span>.
+                      Freelance developer building{" "}
+                      <span className="text-primary font-semibold">MVP products</span>,{" "}
+                      <span className="text-pink-400 font-semibold">scalable web apps</span> &{" "}
+                      <span className="text-blue-400 font-semibold">automation tools</span>.
                     </span>
                   </div>
 
-                  {/* Line 2 */}
                   <div className="flex items-center gap-3 text-base sm:text-lg">
                     <div className="hidden sm:block w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
                     <span className="text-muted-foreground">
-                      Founder of{" "}
-                      <span className="text-yellow-400 font-semibold">@KaamLagao</span> — freelance marketplace, and built{" "}
-                      <span className="text-primary font-semibold">internal systems</span> &
-                      <span className="text-primary font-semibold"> media pipelines</span> with AWS.
+                      Passionate about turning{" "}
+                      <span className="text-yellow-400 font-semibold">ideas into impact</span>{" "}
+                      using 
+                      <span className="text-foreground/55">{" "}Next.js, React, Tailwind CSS & Node.js</span>
+                      .
                     </span>
                   </div>
                 </div>
@@ -148,10 +146,10 @@ export default function Portfolio() {
                     <span>Delhi, India</span>
                   </div>
 
-                  <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary transition-all duration-300 cursor-pointer text-xs sm:text-sm md:text-base">
+                  <a href="mailto:hello@pankajk.site" className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary transition-all duration-300 cursor-pointer text-xs sm:text-sm md:text-base">
                     <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
                     <span>hello@pankajk.site</span>
-                  </div>
+                  </a>
                 </div>
               </div>
 

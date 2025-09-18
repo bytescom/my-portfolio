@@ -133,7 +133,7 @@ export default function Navbar() {
           </button>
         ))}
 
-        <a href="mailto:hello@pankajk.site" class="btn41-43 btn-43 pt-10">
+        <a href="mailto:hello@pankajk.site" className="btn41-43 btn-43 pt-10">
           Get Started Now
         </a>
       </div>

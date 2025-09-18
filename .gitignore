@@ -43,9 +43,5 @@ next-env.d.ts
 #components
 components/help.js
 components/help2.js
-components/help3.js
+components/help3skills.js
 components/help4.js
-
-# app/skills/page.js
-app/skills/page.js
-app/projects/page.js

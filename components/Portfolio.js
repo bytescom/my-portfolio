@@ -19,8 +19,15 @@ import {
   Calendar,
   MessageCircle,
 } from "lucide-react"
+import { FaXTwitter } from "react-icons/fa6";
 import Navbar from "./Navbar"
 import Link from "next/link"
+import { socials } from "./data/socials";
+import { projects } from "./data/projects";
+import { skills, getCategoryColors } from "./data/skills";
+import { services } from "./data/services";
+
+
 
 export default function Portfolio() {
   const [openIndex, setOpenIndex] = React.useState(null)
@@ -34,124 +41,16 @@ export default function Portfolio() {
     setServicesOpenIndex(servicesOpenIndex === index ? null : index)
   }
 
-  const projects = [
-    {
-      title: "Linkbee - Url Shortener",
-      description: "Gamified stock market simulator with real-time data and portfolio tracking.",
-      tags: ["React", "Node.js", "MongoDB"],
-      type: "Full Stack App",
-      url: "https://github.com/pankajk07414/sms-stock-market-simulator",
-      demoUrl: "https://sms-simulator.vercel.app",
-      img: "/linkbee.png"
-    },
-    {
-      title: "EkChupChai - buy me a coffee clone",
-      description: "Interactive quiz platform with 10,000+ active users and real-time competitions.",
-      tags: ["React.js", "MongoDB", "Express"],
-      type: "Interactive Platform",
-      url: "https://github.com/pankajk07414/quizzzy-platform",
-      demoUrl: "https://quizzzy-app.vercel.app",
-      img: "/ekchupchai.png"
-    },
-    {
-      title: "Saasly - Inventory Management System",
-      description: "A SaaS landing page with a responsive UI and a form for user to get in touch with the team.",
-      tags: ["Next.js", "AWS", "MongoDB", "Redis"],
-      type: "SaaS Platform",
-      url: "https://github.com/pankajk07414/latch-publication-manager",
-      demoUrl: "https://latch-publications.vercel.app",
-      img: "/saasly.png"
-    },
-    {
-      title: "Thirtysixstudio - Agency Landing Page",
-      description: "Comprehensive system for scientific conference management and peer reviews.",
-      tags: ["React Native", "PostgreSQL", "Node.js"],
-      type: "Management System",
-      url: "https://github.com/pankajk07414/conference-manager",
-      demoUrl: "https://conference-manager.vercel.app",
-      img: "/thirtysixstudio-1.png"
-    },
-    {
-      title: "WellFlow - Wellflow Landing Page",
-      description: "Platform connecting students with hackathons and team formation tools.",
-      tags: ["React.js", "Node.js", "TypeScript"],
-      type: "Web Platform",
-      url: "https://github.com/pankajk07414/hackathon-portal",
-      demoUrl: "https://hackathon-portal.vercel.app",
-      img: "/wellflow.png"
-    },
-    {
-      title: "KoinX - Crypto Landing Page",
-      description: "Modern social networking app for university students with real-time messaging.",
-      tags: ["Next.js", "Supabase", "React.js"],
-      type: "Social App",
-      url: "https://github.com/pankajk07414/velvet-social-app",
-      demoUrl: "https://velvet-social.vercel.app",
-      img: "/koinX-dashobard-preview.png"
-    },
-  ]
-
-  // Clean color mapping for skill categories
-  const getCategoryColors = (category) => {
-    const colors = {
-      Languages: "from-blue-500 to-cyan-500",
-      Frameworks: "from-purple-500 to-pink-500",
-      Databases: "from-green-500 to-emerald-500",
-      Tools: "from-orange-500 to-red-500"
-    }
-    return colors[category] || colors.Languages
-  }
-
-  const skills = [
-    { category: "Languages", skills: ["JavaScript", "TypeScript", "Python", "HTML", "CSS"] },
-    { category: "Frameworks", skills: ["React", "Next.js", "Node.js", "Express", "TailwindCSS"] },
-    { category: "Databases", skills: ["MongoDB", "PostgreSQL", "Supabase", "Redis", "Prisma"] },
-    { category: "Tools", skills: ["Git", "Docker", "Figma", "VS Code", "GitHub"] },
-  ]
-
-  const services = [
-    {
-      icon: Monitor,
-      title: "Frontend Development",
-      description:
-        "Building responsive and dynamic user interfaces using React, Next.js, and TypeScript with focus on performance and accessibility.",
-    },
-    {
-      icon: Code,
-      title: "Full Stack Applications",
-      description:
-        "Developing end-to-end web applications with modern tech stack ensuring scalable and maintainable solutions.",
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Implementation",
-      description:
-        "Transforming design mockups into pixel-perfect, responsive interfaces with smooth animations and transitions.",
-    },
-    {
-      icon: Database,
-      title: "API Development",
-      description:
-        "Creating robust and efficient RESTful APIs with secure authentication, data validation, and proper error handling.",
-    },
-  ]
-
-  const socials = [
-    { name: "GitHub", icon: Github, url: "https://github.com/bytescom" },
-    { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/pankajk074" },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com/iampankajkumr" }
-  ]
-
   // Define gradient colors for each social platform
   const getGradientClasses = (socialName) => {
     switch (socialName) {
-      case 'GitHub':
+      case 'Github':
         return {
-          mobile: 'bg-gradient-to-r from-gray-800 to-gray-900',
-          desktop: 'md:bg-gradient-to-r md:from-gray-800/10 md:to-gray-900/10',
-          hover: 'md:hover:bg-gradient-to-r md:hover:from-gray-800 md:hover:to-gray-900',
-          text: 'md:text-gray-800',
-          border: 'border-gray-800 md:hover:border-gray-800/20'
+          mobile: 'bg-gradient-to-r from-gray-800 to-black',
+          desktop: 'md:bg-gradient-to-r md:from-gray-800/10 md:to-black/10',
+          hover: 'md:hover:bg-gradient-to-r md:hover:from-gray-800 md:hover:to-black',
+          text: 'md:text-gray-800 dark:md:text-gray-200',
+          border: 'border-gray-800 md:hover:border-gray-800/20 dark:border-gray-600 dark:md:hover:border-gray-500/20'
         }
       case 'LinkedIn':
         return {
@@ -163,15 +62,15 @@ export default function Portfolio() {
         }
       case 'Twitter':
         return {
-          mobile: 'bg-gradient-to-r from-sky-500 to-sky-600',
-          desktop: 'md:bg-gradient-to-r md:from-sky-500/10 md:to-sky-600/10',
-          hover: 'md:hover:bg-gradient-to-r md:hover:from-sky-500 md:hover:to-sky-600',
-          text: 'md:text-sky-500',
-          border: 'border-sky-500 md:hover:border-sky-500/20'
+          mobile: 'bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-500 dark:to-gray-600',
+          desktop: 'md:bg-gradient-to-r md:from-gray-800/10 md:to-gray-900/10 dark:md:from-gray-500/10 dark:md:to-gray-600/10',
+          hover: 'md:hover:bg-gradient-to-r md:hover:from-gray-800 md:hover:to-gray-900 dark:md:hover:from-gray-500 dark:md:hover:to-gray-600',
+          text: 'md:text-gray-800 dark:md:text-gray-200',
+          border: 'border-gray-700 md:hover:border-gray-800/20 dark:border-gray-500 dark:md:hover:border-gray-600/20'
         }
       default:
         return {
-          mobile: 'bg-gradient-to-r from-primary to-primary-dark',
+          mobile: 'bg-gradient-to-r from-primary/60 to-primary-dark',
           desktop: 'md:bg-gradient-to-r md:from-primary/10 md:to-primary-dark/10',
           hover: 'md:hover:bg-gradient-to-r md:hover:from-primary md:hover:to-primary-dark',
           text: 'md:text-primary',
@@ -190,75 +89,79 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <div className="max-w-6xl mx-auto px-6 py-12 pt-24">
+
+      <div className="max-w-6xl mx-auto px-6 py-12 pt-28 text-sm sm:text-base md:text-lg lg:text-xl">
         <header id="home" className="mb-32">
           <div className="flex justify-start items-center gap-10">
             {/* Left Content */}
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 md:bg-green-500/10 text-green-600  md:px-4 md:py-1 rounded-full text-sm font-medium mb-1 md:mb-3 animate-pulse">
-                <div className="w-2 h-2 bg-green-600 rounded-full animate-ping"></div>
-                Available for work
-              </div>
+              <div className="space-y-4 pl-1 sm:pl-0">
+                <div className="inline-flex items-center gap-2 md:bg-green-500/10 text-green-600 md:px-4 md:py-1 rounded-full text-xs sm:text-sm md:text-base font-medium mb-4 md:mb-3 animate-pulse">
+                  <div className="w-2 h-2 bg-green-600 rounded-full animate-ping"></div>
+                  Available for work
+                </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
-                <span className="block text-foreground">Hello, I&apos;m</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500 relative inline-block">
-                  Pankaj Kumar
-                  <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-80"></div>
-                </span>
-              </h1>
-
-              <div className="space-y-2 mt-2">
-                <p className="text-2xl md:text-3xl font-bold text-muted-foreground">
-                  Full Stack Developer · Freelancer
-                </p>
-              </div>
-
-              {/* Key Highlights */}
-              <div className="space-y-3">
-                {/* Line 1 */}
-                <div className="flex items-center gap-3 text-lg">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  <span className="text-muted-foreground">
-                    Building exceptional digital experiences with{" "}
-                    <span className="text-primary font-semibold">modern technologies</span>,{" "}
-                    <span className="text-pink-400 font-semibold">web apps</span> &{" "}
-                    <span className="text-blue-400 font-semibold">automation</span>.
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black sm:leading-[0.9] sm:tracking-tight">
+                  <span className="block text-foreground">Hello, I&apos;m</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500 relative inline-block leading-[0.9] tracking-tight">
+                    Pankaj Kumar
+                    <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-80"></div>
+                    {/* <div className="hidden sm:block absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full opacity-80"></div> */}
                   </span>
+                </h1>
+
+                <div className="space-y-2 pt-6">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-muted-foreground lg:pt-2">
+                    Full Stack Developer · Freelancer
+                  </p>
                 </div>
 
-                {/* Line 2 */}
-                <div className="flex items-center gap-3 text-lg">
-                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
-                  <span className="text-muted-foreground">
-                    Founder of{" "}
-                    <span className="text-yellow-400 font-semibold">@KaamLagao</span> — freelance marketplace, and built{" "}
-                    <span className="text-primary font-semibold">internal systems</span> &
-                    <span className="text-primary font-semibold"> media pipelines</span> with AWS.
-                  </span>
-                </div>
-              </div>
+                {/* Key Highlights */}
+                <div className="flex flex-col justify-start gap-4 pt-1 pb-4">
+                  {/* Line 1 */}
+                  <div className="flex items-center gap-3 text-base sm:text-lg">
+                    <div className="hidden sm:block w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    <span className="text-muted-foreground">
+                      Building exceptional digital experiences with{" "}
+                      <span className="text-primary font-semibold">modern technologies</span>,{" "}
+                      <span className="text-pink-400 font-semibold">web apps</span> &{" "}
+                      <span className="text-blue-400 font-semibold">automation</span>.
+                    </span>
+                  </div>
 
-              {/* Contact Info */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base lg:text-lg text-black">
-                <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary md:border-transparent md:hover:border-primary transition-all duration-300 cursor-pointer">
-                  <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
-                  <span>Delhi, India</span>
+                  {/* Line 2 */}
+                  <div className="flex items-center gap-3 text-base sm:text-lg">
+                    <div className="hidden sm:block w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                    <span className="text-muted-foreground">
+                      Founder of{" "}
+                      <span className="text-yellow-400 font-semibold">@KaamLagao</span> — freelance marketplace, and built{" "}
+                      <span className="text-primary font-semibold">internal systems</span> &
+                      <span className="text-primary font-semibold"> media pipelines</span> with AWS.
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary md:border-transparent md:hover:border-primary transition-all duration-300 cursor-pointer">
-                  <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
-                  <span>hello@pankajk.site</span>
+                {/* Contact Info */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base lg:text-lg text-white pl-1 sm:pl-0 lg:pt-3">
+                  <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary transition-all duration-300 cursor-pointer text-xs sm:text-sm md:text-base">
+                    <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                    <span>Delhi, India</span>
+                  </div>
+
+                  <div className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-primary transition-all duration-300 cursor-pointer text-xs sm:text-sm md:text-base">
+                    <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                    <span>hello@pankajk.site</span>
+                  </div>
                 </div>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 pt-6 md:pt-8">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 lg:gap-6 pt-12 sm:px-0">
                 <a
-                  href="https://calendly.com/pankajk074/30min"
+                  href="https://calendly.com/hellopankajk/30min?"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-4 xl:px-16 rounded-2xl sm:rounded-3xl font-semibold sm:font-bold text-sm sm:text-base lg:text-lg xl:text-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/40 overflow-hidden bg-gradient-to-r from-primary via-purple-500 to-primary-dark text-primary-foreground border-2 border-transparent hover:border-primary/30"
+                  className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-4 xl:px-16 rounded-2xl font-semibold sm:font-bold text-base md:text-lg lg:text-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/40 overflow-hidden bg-gradient-to-r from-primary via-purple-500 to-primary-dark text-primary-foreground border-2 border-transparent hover:border-primary/30"
                 >
                   {/* Animated background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark rounded-2xl sm:rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -277,10 +180,10 @@ export default function Portfolio() {
                 </a>
 
                 <a
-                  href="https://twitter.com/messages/compose?recipient_id=YOUR_TWITTER_ID&text=Hi%20Pankaj,%20I%27d%20like%20to%20discuss%20a%20project%20with%20you."
+                  href="https://wa.me/918929025869?text=Hi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-4 xl:px-16 rounded-2xl sm:rounded-3xl font-semibold sm:font-bold text-sm sm:text-base lg:text-lg xl:text-xl transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/30 border-2 border-sky-500/30 hover:border-sky-500/80 bg-gradient-to-r from-sky-500/10 via-blue-500/10 to-sky-600/10 backdrop-blur-sm hover:bg-gradient-to-r hover:from-sky-500 hover:via-blue-500 hover:to-sky-600 overflow-hidden text-sky-600 hover:text-white"
+                  className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-4 xl:px-16 rounded-2xl font-semibold sm:font-bold text-base md:text-lg lg:text-xl transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/30 border-2 border-sky-500/30 hover:border-sky-500/80 bg-gradient-to-r from-sky-500/10 via-blue-500/10 to-sky-600/10 backdrop-blur-sm hover:bg-gradient-to-r hover:from-sky-500 hover:via-blue-500 hover:to-sky-600 overflow-hidden text-sky-600 hover:text-white"
                 >
                   {/* Animated background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-sky-500/20 via-blue-500/20 to-sky-600/20 rounded-2xl sm:rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -301,7 +204,7 @@ export default function Portfolio() {
 
 
               {/* Social Links */}
-              <div className="flex flex-wrap gap-4 pt-12">
+              <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 pt-20">
                 {socials.map((social, index) => {
                   const gradientClasses = getGradientClasses(social.name)
                   return (
@@ -310,13 +213,15 @@ export default function Portfolio() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`group flex flex-col md:flex-row items-center gap-3 p-3 md:px-6 md:py-2 text-white ${gradientClasses.mobile} border ${gradientClasses.border} ${gradientClasses.text} md:hover:text-white ${gradientClasses.desktop} rounded-xl ${gradientClasses.hover} transition-all duration-300 hover:scale-105 md:backdrop-blur-sm md:shadow-lg`}
+                      className={`group w-[31%] sm:w-fit text-white ${gradientClasses.mobile} border ${gradientClasses.border} ${gradientClasses.text} md:hover:text-white ${gradientClasses.desktop} rounded-xl ${gradientClasses.hover} transition-all duration-300 hover:scale-105 md:backdrop-blur-sm md:shadow-lg`}
                       title={social.name}
                     >
-                      <social.icon className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
-                      <span className="hidden md:block text font-medium group-hover:text-white transition-colors duration-300">
-                        {social.name}
-                      </span>
+                      <div className="flex justify-center items-center gap-1 px-[4vw] sm:px-6 py-3">
+                        <social.icon className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+                        <span className="text-base lg:text-lg font-medium group-hover:text-white transition-colors duration-300">
+                          {social.name}
+                        </span>
+                      </div>
                     </a>
                   )
                 })}
@@ -344,11 +249,11 @@ export default function Portfolio() {
 
         <section id="projects" className="mb-32">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm sm:text-base font-medium mb-6">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
               Projects
             </div>
-            <h2 className="text-4xl font-semibold mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl font-semibold mb-6 tracking-tight">
               Not just
               <span className="text-primary relative inline-block">
                 <Link href="/projects" className="flex items-center">
@@ -359,80 +264,81 @@ export default function Portfolio() {
               </span>
               , but experiments in impact
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
               Showcasing ideas transformed into experiences that inspire curiosity.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
+            {projects.slice(0, 6).map((project, index) => (
               <Card
                 key={index}
-                className="group relative overflow-hidden border border-primary/10 bg-gradient-to-br from-background to-background/50 hover:border-primary/20 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 rounded-2xl cursor-pointer"
+                className="group relative overflow-hidden border border-primary bg-gradient-to-br from-background to-background/50 hover:border-primary/20 hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 cursor-pointer"
                 onClick={() => window.open(project.demoUrl, '_blank', 'noopener,noreferrer')}
               >
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={project.img}
-                      alt={project.title}
-                      width={400}
-                      height={200}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={project.img}
+                    alt={project.title}
+                    width={400}
+                    height={200}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm text-white font-medium px-3 py-1 rounded-full">
-                        {project.type}
-                      </Badge>
-                    </div>
-
-                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm p-2.5 rounded-lg hover:from-primary hover:to-primary-dark hover:scale-110 transition-all duration-300"
-                        title="Source Code"
-                      >
-                        <Github className="w-4 h-4 text-white" />
-                      </a>
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm p-2.5 rounded-lg hover:from-primary hover:to-primary-dark hover:scale-110 transition-all duration-300"
-                        title="Live Demo"
-                      >
-                        <ExternalLink className="w-4 h-4 text-white" />
-                      </a>
-                    </div>
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm text-white font-medium px-3 py-1 rounded-full text-xs sm:text-sm">
+                      {project.type}
+                    </Badge>
                   </div>
 
-                  <CardContent className="p-4">
-                    <div className="mb-4">
-                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
-                        {project.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
+                  <div className="absolute top-4 right-4 flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm p-2.5 rounded-lg hover:from-primary hover:to-primary-dark hover:scale-110 transition-all duration-300"
+                      title="Source Code"
+                    >
+                      <Github className="w-4 h-4 text-white" />
+                    </a>
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="bg-gradient-to-r from-primary-dark to-primary backdrop-blur-sm p-2.5 rounded-lg hover:from-primary hover:to-primary-dark hover:scale-110 transition-all duration-300"
+                      title="Live Demo"
+                    >
+                      <ExternalLink className="w-4 h-4 text-white" />
+                    </a>
+                  </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge
-                          key={tagIndex}
-                          variant="secondary"
-                          className="text-xs px-3 py-1 bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300 rounded-full"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
+                </div>
+
+                <CardContent className="p-4">
+                  <div className="mb-4">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIndex) => (
+                      <Badge
+                        key={tagIndex}
+                        variant="secondary"
+                        className="text-xs sm:text-sm px-3 py-1 bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300 rounded-full"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -473,7 +379,13 @@ export default function Portfolio() {
                 <CardContent className="relative p-6">
                   {/* Header */}
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${getCategoryColors(group.category)} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                    <div className={`
+                        relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500
+                        ${servicesOpenIndex === index
+                        ? 'bg-gradient-to-br from-primary to-primary-dark text-primary-foreground shadow-lg shadow-primary/30 scale-110'
+                        : 'bg-gradient-to-br from-primary/10 to-primary/20 text-primary hover:from-primary/20 hover:to-primary/30 group-hover:scale-105'
+                      }
+                      `}>
                       <div className="w-6 h-6 bg-white/90 rounded-lg"></div>
                     </div>
                     <div>
@@ -515,7 +427,7 @@ export default function Portfolio() {
             <h2 className="text-4xl font-semibold mb-6 tracking-tight">
               How I can help bring your
               <span className="text-primary relative inline-block">
-                <Link href="/skills" className="flex items-center">
+                <Link href="/services" className="flex items-center">
                   digital vision
                   <ExternalLink className="w-6 h-6 ml-1" />
                 </Link>
@@ -661,12 +573,12 @@ export default function Portfolio() {
                   <div className="max-w-3xl mx-auto">
                     {/* Animated Header */}
                     <div className="mb-8">
-                      <div className="inline-flex items-center gap-2 bg-green-500/10 text-green-600 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
+                      <div className="inline-flex items-center gap-2 bg-green-500/10 text-green-600 px-4 py-2 rounded-full text-xs sm:text-sm md:text-base font-medium mb-6 animate-pulse">
                         <div className="w-2 h-2 bg-green-600 rounded-full animate-ping"></div>
                         Available for work
                       </div>
 
-                      <h3 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 tracking-tight group-hover:scale-105 transition-transform duration-500">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 tracking-tight group-hover:scale-105 transition-transform duration-500">
                         Let&apos;s Build Something
                         <span className="text-primary relative inline-block">
                           {" "}Amazing
@@ -674,14 +586,14 @@ export default function Portfolio() {
                         </span>
                       </h3>
 
-                      <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed group-hover:text-foreground/80 transition-colors duration-500">
+                      <p className="text-muted-foreground text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed group-hover:text-foreground/80 transition-colors duration-500">
                         Whether you have a project in mind or just want to chat about possibilities, I&apos;d love to hear from you.
                       </p>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8">
                       {/* Primary CTA Button */}
-                      <a href="mailto:hello@pankajk.site" className="group/btn relative cursor-pointer inline-flex items-center justify-center px-[5vw] py-3 sm:px-10 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-primary/40 border-2 border-transparent hover:border-primary/30 overflow-hidden bg-gradient-to-r from-primary to-primary-dark text-primary-foreground">
+                      <a href="mailto:hello@pankajk.site" className="group/btn relative cursor-pointer inline-flex items-center justify-center px-[5vw] py-3 sm:px-10 sm:py-4 rounded-xl font-semibold text-base md:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-primary/40 border-2 border-transparent hover:border-primary/30 overflow-hidden bg-gradient-to-r from-primary to-primary-dark text-primary-foreground">
                         <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark rounded-3xl blur-lg opacity-75 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
                         <div className="relative flex items-center gap-3">
@@ -694,14 +606,14 @@ export default function Portfolio() {
                       </a>
 
                       {/* Secondary CTA Button */}
-                      <a href="#" className="group/btn2 relative cursor-pointer inline-flex items-center justify-center px-[5vw] py-3 sm:px-10 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-500 hover:scale-110 hover:shadow-xl hover:shadow-primary/30 border-2 border-primary/30 hover:border-primary/80 bg-background/50 backdrop-blur-sm hover:bg-primary/10 overflow-hidden text-foreground">
+                      <a href="https://calendly.com/hellopankajk/30min" className="group/btn2 relative cursor-pointer inline-flex items-center justify-center px-[5vw] py-3 sm:px-10 sm:py-4 rounded-xl font-semibol text-base md:text-lg transition-all duration-500 hover:scale-110 hover:shadow-xl hover:shadow-primary/30 border-2 border-primary/30 hover:border-primary/80 bg-background/50 backdrop-blur-sm hover:bg-primary/10 overflow-hidden text-foreground">
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-dark/20 rounded-3xl blur-lg opacity-0 group-hover/btn2:opacity-100 transition-opacity duration-500"></div>
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover/btn2:translate-x-full transition-transform duration-1000"></div>
                         <div className="relative flex items-center gap-3">
                           <div className="w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center group-hover/btn2:bg-primary group-hover/btn2:text-primary-foreground group-hover/btn2:rotate-12 transition-all duration-300">
-                            <Github className="w-4 h-4 text-primary group-hover/btn2:text-primary-foreground group-hover/btn2:scale-110 transition-all duration-300" />
+                            <Calendar className="w-4 h-4 text-primary group-hover/btn2:text-primary-foreground group-hover/btn2:scale-110 transition-all duration-300" />
                           </div>
-                          <span className="group-hover/btn2:scale-105 transition-transform duration-300">View Portfolio</span>
+                          <span className="group-hover/btn2:scale-105 transition-transform duration-300">Talk To Us</span>
                           <div className="w-2 h-2 bg-primary/60 rounded-full animate-pulse group-hover/btn2:animate-bounce"></div>
                         </div>
                       </a>
@@ -715,7 +627,7 @@ export default function Portfolio() {
 
         <footer className="border-t border-border max-w-6xl mx-auto pt-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-muted-foreground">© 2024 Pankaj Kumar. All rights reserved.</p>
+            <p className="text-muted-foreground text-sm md:text-base">© 2024 Pankaj Kumar. All rights reserved.</p>
             <div className="flex gap-4">
               {socials.map((social, index) => (
                 <a
@@ -723,7 +635,7 @@ export default function Portfolio() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/social flex flex-col items-center gap-3 p-3 text-primary hover:text-white bg-primary/10 rounded-xl hover:border-primary hover:bg-primary transition-all duration-300 hover:scale-105"
+                  className="group/social flex flex-col items-center gap-3 p-3 text-white sm:text-primary hover:text-white bg-primary sm:bg-primary/10 rounded-xl hover:border-primary hover:bg-primary transition-all duration-300 hover:scale-105"
                   title={social.name}
                 >
                   <social.icon className="w-5 h-5" />
